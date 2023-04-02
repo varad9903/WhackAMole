@@ -35,3 +35,5 @@ if(currentTime==0){
     clearInterval(timerId)
 }
 }
+moveMole()
+let timerId=setInterval(countDown,1000);
