@@ -27,3 +27,11 @@ function moveMole(){
     let timerId=null;
     timerId=setInterval(randomSquare, 1000);
 }
+function countDown(){
+    currentTime --
+    timeLeft.textContent=currentTime
+
+if(currentTime==0){
+    clearInterval(timerId)
+}
+}
