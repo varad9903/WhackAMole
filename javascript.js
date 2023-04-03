@@ -1,11 +1,17 @@
 const square=document.querySelectorAll('.square');
+
 const mole=document.querySelectorAll('.mole');
+
 const timeLeft=document.querySelector('#time-left');
+
 const message=document.querySelector('#action-message');
+
 let score = document.querySelector('#score');
 
 let result=0;
+
 let currentTime=timeLeft.textContent;
+
 function randomSquare(){
     square.forEach(className=>{
         className.classList.remove('mole');
@@ -15,6 +21,7 @@ function randomSquare(){
 
     hitPosition=randomPosition.id 
 }
+
 square.forEach(id=>{
     id.addEventListener('mouseup',()=>{
         if(id.id=== hitPosition){
@@ -23,10 +30,12 @@ square.forEach(id=>{
         }
     })
 })
+
 function moveMole(){
     let timerId=null;
     timerId=setInterval(randomSquare, 1000);
 }
+
 function countDown(){
     currentTime --
     timeLeft.textContent=currentTime
@@ -36,4 +45,5 @@ if(currentTime==0){
 }
 }
 moveMole()
+
 let timerId=setInterval(countDown,1000);
