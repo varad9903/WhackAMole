@@ -5,7 +5,7 @@ const message = document.querySelector('#action-message');
 let score = document.querySelector('#score');
 let result = 0;
 let currentTime = timeLeft.textContent;
-let timerId = null; // initialize the timerId variable here
+let timerId = null;
 
 function randomSquare() {
   square.forEach(className => {
@@ -35,12 +35,16 @@ function countDown() {
 
   if (currentTime === 0) {
     clearInterval(timerId);
-    // Stop the mole spawning by clearing the interval timer
+    square.forEach(className => {
+      className.classList.remove('mole');
+    });
+    // Remove the mole class from all squares
+    message.textContent = 'Game over! Your final score is ' + result;
+    // Display the final score
   }
 }
 
 moveMole();
-
-// Start the timerId for countdown outside of moveMole function
 timerId = setInterval(countDown, 1000);
+
 
