@@ -1,49 +1,46 @@
-const square=document.querySelectorAll('.square');
-
-const mole=document.querySelectorAll('.mole');
-
-const timeLeft=document.querySelector('#time-left');
-
-const message=document.querySelector('#action-message');
-
+const square = document.querySelectorAll('.square');
+const mole = document.querySelectorAll('.mole');
+const timeLeft = document.querySelector('#time-left');
+const message = document.querySelector('#action-message');
 let score = document.querySelector('#score');
+let result = 0;
+let currentTime = timeLeft.textContent;
+let timerId = null; // initialize the timerId variable here
 
-let result=0;
-
-let currentTime=timeLeft.textContent;
-
-function randomSquare(){
-    square.forEach(className=>{
-        className.classList.remove('mole');
-    })
-    let randomPosition=square[Math.floor(Math.random()*9)]
-    randomPosition.classList.add('mole')
-
-    hitPosition=randomPosition.id 
+function randomSquare() {
+  square.forEach(className => {
+    className.classList.remove('mole');
+  })
+  let randomPosition = square[Math.floor(Math.random() * 9)];
+  randomPosition.classList.add('mole');
+  hitPosition = randomPosition.id;
 }
 
-square.forEach(id=>{
-    id.addEventListener('mouseup',()=>{
-        if(id.id=== hitPosition){
-            result=result+1;
-            score.textContent=result;
-        }
-    })
+square.forEach(id => {
+  id.addEventListener('mouseup', () => {
+    if (id.id === hitPosition) {
+      result = result + 1;
+      score.textContent = result;
+    }
+  })
 })
 
-function moveMole(){
-    let timerId=null;
-    timerId=setInterval(randomSquare, 1000);
+function moveMole() {
+  timerId = setInterval(randomSquare, 1000);
 }
 
-function countDown(){
-    currentTime --
-    timeLeft.textContent=currentTime
+function countDown() {
+  currentTime--;
+  timeLeft.textContent = currentTime;
 
-if(currentTime==0){
-    clearInterval(timerId)
+  if (currentTime === 0) {
+    clearInterval(timerId);
+    // Stop the mole spawning by clearing the interval timer
+  }
 }
-}
-moveMole()
 
-let timerId=setInterval(countDown,1000);
+moveMole();
+
+// Start the timerId for countdown outside of moveMole function
+timerId = setInterval(countDown, 1000);
+
